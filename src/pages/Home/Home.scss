@@ -1,0 +1,46 @@
+.Home {
+  padding-top: 100px;
+  text-align: center;
+  color: rgb(40, 44, 52);
+
+  &__title {
+    font-size: 4em;
+    line-height: 65px;
+    font-weight: 700;
+  }
+
+  &__text {
+    font-size: 1.5em;
+    line-height: 1.5;
+    margin: 21px 0;
+  }
+
+  &__logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 35px 0 45px;
+  }
+
+  &__logo {
+    margin-right: 25px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  &__link {
+    display: inline-block;
+    font-size: 1.4em;
+    color: #333333;
+    background: #61dafb;
+    padding: 12px 23px;
+    transition: 400ms;
+
+    &:hover {
+      color: #ffffff;
+      background: #333333;
+    }
+  }
+}

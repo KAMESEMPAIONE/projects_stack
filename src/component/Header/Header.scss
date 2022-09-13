@@ -1,0 +1,34 @@
+.header {
+  background: #20232A;
+  &__list {
+    display: flex;
+    justify-content: center;
+  }
+
+
+  &__link {
+    font-size: 1.2em;
+    font-weight: 500;
+    color: #fff;
+    text-transform: uppercase;
+    padding: 18px 30px 18px 30px;
+
+    &:last-child {
+      position: relative;
+      svg {
+        position: absolute;
+        top: 19px;
+        right: 10px;
+      }
+    }
+    &:hover {
+      color: #61dafb;
+    }
+
+    &.active {
+      color: #61dafb;
+      padding: 18px 30px 14px 30px;
+      border-bottom: 4px solid #61dafb;
+    }
+  }
+}
