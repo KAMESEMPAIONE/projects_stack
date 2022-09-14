@@ -1,5 +1,9 @@
 .header {
+  position: fixed;
+  z-index: 999;
+  width: 100%;
   background: #20232A;
+
   &__list {
     display: flex;
     justify-content: center;

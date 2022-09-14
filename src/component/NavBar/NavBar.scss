@@ -1,0 +1,66 @@
+.NavBar {
+  position: relative;
+  flex: 0 1 15%;
+
+  &__nav {
+    position: fixed;
+    width: 15%;
+    height: 100%;
+    padding: 100px 35px 0;
+    background: #ebebeb;
+  }
+
+  &__input {
+    width: 100%;
+    padding: 7px 30px 7px 20px;
+    border: 1px solid #ebebeb;
+    border-radius: 10px;
+    background-image:url("./img/free-icon-search-483356.png") ;
+    background-repeat: no-repeat;
+    background-position: 95% 50%;
+    background-size: 15px 15px;
+    font-size: 1.1em;
+
+    &:focus {
+      border: 1px solid gray;
+    }
+
+    &::placeholder {
+      color: #6B6B6B;
+    }
+  }
+
+  &__list {
+    margin-top: 20px;
+    padding-top: 10px;
+    border-top: 2px solid #20232A;
+  }
+
+  &__link {
+    display: inline-block;
+    position: relative;
+    margin-top: 10px;
+    padding-left: 15px ;
+    font-size: 1.2em;
+    font-weight: 500;
+    color: #1a1a1a;
+    letter-spacing: 1px;
+    transition: 200ms;
+
+    &.active {
+      font-weight: 600;
+    }
+
+    &.active::after {
+      content: "";
+      display: block;
+      position: absolute;
+      height: 25px;
+      width: 4px;
+      background: rgb(97, 218, 251);
+      left: 0;
+      top: -2px;
+    }
+
+  }
+}

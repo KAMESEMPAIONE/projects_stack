@@ -7,7 +7,7 @@ import './Home.scss';
 
 export const Home: FC = () => {
     return (
-        <div className={'Home'}>
+        <section className={'Home'}>
             <h1 className={'Home__title'}>React Projects Stack</h1>
             <p className={'Home__text'}>This project includes a set of components common in web development and some other elements.</p>
             <p className={'Home__text'}>The following technologies were used in this project:</p>
@@ -32,7 +32,7 @@ export const Home: FC = () => {
                 </div>
             </div>
 
-            <Link to={'/projects'} className={'Home__link'}>Get Started</Link>
-        </div>
+            <Link to={'/projects/spoiler'} className={'Home__link'}>Get Started</Link>
+        </section>
     )
 }
