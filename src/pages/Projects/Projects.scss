@@ -1,0 +1,7 @@
+.Projects {
+  display: flex;
+  &__body {
+    flex: 0 1 85%;
+    padding-top: 70px;
+  }
+}
