@@ -8,6 +8,8 @@ import {Projects} from "./pages/Projects/Projects";
 import {NotFoundPage} from "./pages/NotFoundPage/NotFoundPage";
 import {Spoiler} from "./component/Spoiler/Spoiler";
 import {Tabs} from "./component/Tabs/Tabs";
+import { Random } from './component/Random/Random';
+import { Timer } from './component/Timer/Timer';
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
                             <Route path={'/projects'} element={<Projects/>}>
                                     <Route path={'spoiler'} element={<Spoiler/>}/>
                                     <Route path={'tabs'} element={<Tabs/>}/>
+                                    <Route path={'random-generator'} element={<Random/>}/>
+                                    <Route path={'timer'} element={<Timer/>}/>
                             </Route>
                             <Route path={'*'} element={<NotFoundPage/>}/>
                     </Routes>

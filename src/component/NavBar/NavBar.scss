@@ -36,6 +36,11 @@
     border-top: 2px solid #20232A;
   }
 
+  &__notFound {
+    font-size: 1.2em;
+    margin-top: 10px;
+  }
+
   &__link {
     display: inline-block;
     position: relative;

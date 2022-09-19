@@ -1,43 +1,65 @@
-import React, {FC} from "react";
+import {useState, FC} from "react";
 import {NavLink, useSearchParams} from "react-router-dom";
 import './NavBar.scss';
 
 export const NavBar: FC = () => {
+    const [inputValue, setInputValue] = useState<string>('');
+
     const [searchParams, setSearchParams] = useSearchParams();
     const searchQuery: string = searchParams.get('searchValue') || ('');
 
+    const linkArr: string[] = ['Spoiler','Tabs','Random generator','Timer'];
+
+    const filteredArr: string[] = linkArr.filter((link: string) => {
+        return  link.toLowerCase().includes(searchQuery)
+     })
+
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setInputValue(event.target.value);
+
         const query: string = event.target.value;
 
         if (query.length >= 3) {
-           return  setSearchParams({searchValue:query})
+            return  setSearchParams({searchValue: query})
         }
 
-        return setSearchParams({searchValue:''})
+        return setSearchParams({searchValue: ''})
     }
 
+    const handleClick = () => {
+        setInputValue('');
+    }
 
-    const linkArr: string[] = ['Spoiler','Tabs','Random generator','Timer'];
+    window.addEventListener('beforeunload', () => {
+        localStorage.setItem('searchValue', inputValue);
+    })
+
+    window.addEventListener('load', () => {
+        setInputValue(localStorage.getItem('searchValue') || '')
+    })
+
 
     return (
         <aside className={'NavBar'}>
             <nav className={'NavBar__nav'}>
 
-                <form className={'NavBar__form'} >
-                    <input type="search" onChange={handleChange} placeholder={'Search project:'} className={'NavBar__input'} maxLength={30}/>
-                </form>
-
+                <input type="search" onChange={handleChange} value={inputValue} placeholder={'Search the project:'} className={'NavBar__input'} maxLength={30}/>
+                
                 <ul className={'NavBar__list'}>
 
-                    {linkArr.filter((link: string) => {
-                       return  link.toLowerCase().includes(searchQuery)
-                    }).map((link: string, index: number) => {
+                    {filteredArr.length === 0 &&
+                        <div className="NavBar__notFound">
+                            Not found
+                        </div>
+                    }
 
-                        let linkPath: string = link.toLowerCase().replace(/\s/gui,'-');
+                    {filteredArr.map((link: string, index: number) => {
+
+                        const linkPath: string = link.toLowerCase().replace(/\s/gui,'-');
 
                         return (
                             <li className={'NavBar__item'} key={index}>
-                                <NavLink to={`/projects/${linkPath}`} className={'NavBar__link'}>{link}</NavLink>
+                                <NavLink to={`/projects/${linkPath}`} className={'NavBar__link'} onClick={handleClick}>{link}</NavLink>
                             </li>
                         )
                     })}

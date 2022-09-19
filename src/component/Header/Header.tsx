@@ -1,5 +1,6 @@
+import path from "path";
 import {FC} from "react";
-import {NavLink} from "react-router-dom";
+import {NavLink, useMatch} from "react-router-dom";
 import './Header.scss';
 
 export const Header: FC = () => {
