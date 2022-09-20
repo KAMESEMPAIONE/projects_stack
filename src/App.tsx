@@ -8,7 +8,7 @@ import {Projects} from "./pages/Projects/Projects";
 import {NotFoundPage} from "./pages/NotFoundPage/NotFoundPage";
 import {Spoiler} from "./component/Spoiler/Spoiler";
 import {Tabs} from "./component/Tabs/Tabs";
-import { Random } from './component/Random/Random';
+import { Random } from './pages/Random/Random';
 import { Timer } from './component/Timer/Timer';
 
 function App() {
