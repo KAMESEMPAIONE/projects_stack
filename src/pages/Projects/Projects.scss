@@ -4,4 +4,12 @@
     flex: 0 1 85%;
     padding: 100px 20px 0;
   }
+
+  &__title {
+    display: inline-block;
+    padding-bottom: 7px;
+    font-size: 1.5em;
+    font-weight: bold;
+    border-bottom: 2px solid rgb(131, 126, 126);
+  }
 }
