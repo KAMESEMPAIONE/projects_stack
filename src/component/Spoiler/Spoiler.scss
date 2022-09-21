@@ -1,0 +1,71 @@
+.Spoiler {
+    
+    margin: 30px;
+    width: 25%;
+    
+    &__head {
+        position: relative;
+        padding: 10px 0 10px 25px;
+        font-size: 1.4em;
+        font-weight: bold;
+        background: #5a5353;
+        color: #fff;
+        cursor: pointer;
+
+        &::before {
+            content: '';
+            width: 10px;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: black;
+            transition: 200ms;
+        }
+
+        &.active::before {
+            background: #61dafb;
+        }
+    }
+
+    &__arrow {
+        &::after, &::before {
+            content: '';
+            position: absolute;
+            top: 17px;
+            width: 20px;
+            height: 4px;
+            background: #fff;
+            transition: 300ms;
+        }
+
+        &::after {
+            right: 11px;
+            rotate: -45deg;
+        }
+
+        &::before {
+            right: 23px;
+            rotate: 45deg;
+        }
+
+        .Spoiler__head.active  &::after {
+            rotate: 45deg;
+        }
+
+        .Spoiler__head.active &:before {
+            rotate: -45deg;
+        }
+    }
+
+    &__body {
+        display: none;
+        padding: 10px;
+        font-size: 1.2em;
+        line-height: 1.5;
+        background: rgba(187,239,253,0.3);
+        &.active {
+            display: block;
+        }
+    }
+}

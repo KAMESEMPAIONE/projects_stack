@@ -72,16 +72,19 @@ export const Random: FC = () => {
     }
 
     const handleGenPassword = () => {
-        if (+passwordSize < 8) {
-            setIsSizeValid('short');
+        if (+passwordSize === 0) {
+            setIsSizeValid('empty');
             return false;
         } else if (+passwordSize > 128) {
             setIsSizeValid('long');
             return false
+        } else if (+passwordSize < 8) {
+            setIsSizeValid('short');
+            return false
         }
 
         setIsSizeValid('okey')
-        return setPassword(generatePassword(+passwordSize || 14));
+        return setPassword(generatePassword(+passwordSize));
     }
     
     const handleGenSteamKey = () => {
@@ -105,6 +108,7 @@ export const Random: FC = () => {
 
                     <input onChange={handleChange} value={minNumber} type="number" name="minNumber" placeholder="Min:" className="Random__input"/>
                     <input onChange={handleChange} value={maxNumber}  type="number" name="maxNumber" placeholder="Max:" className="Random__input"/>
+
                     <button onClick={handleGenRandom} className="Random__button">Generete number</button>
                     <div className="Random__result">{randomNum}</div>
 
@@ -131,7 +135,14 @@ export const Random: FC = () => {
                         </span>
                     }
 
+                    {isSizeValid === 'empty' &&
+                        <span className="Random__empty">
+                            Enter the Size!
+                        </span>
+                    }
+
                     <input onChange={handleChange} value={passwordSize}  type="number" name="passwordSize" placeholder="Size:" className="Random__input"/>
+                    
                     <button onClick={handleGenPassword} className="Random__button">Generete password</button>
                     <div className="Random__result">{password}</div>
 
