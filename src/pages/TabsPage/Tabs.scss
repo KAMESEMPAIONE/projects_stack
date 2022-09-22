@@ -1,0 +1,94 @@
+.Tabs {
+    & .Tab {
+        margin: 35px 25px 110px 25px;
+    }
+    
+}
+
+.firstTab {
+    & .Tab__list {
+        display: flex;
+    }
+
+    & .Tab__title {
+        font-size: 1.3em;
+        padding: 10px;
+        border-bottom: 2px solid rgba(187, 239, 253, 0.3);
+        cursor: pointer;
+        
+        &.active {
+            color: #fff;
+            background: #5a5353;
+            border-bottom: 2px solid black;
+        }
+    }
+
+    & .Tab__body {
+        width: 45%;
+        padding: 15px;
+        font-size: 1.3em;
+        line-height: 1.3;
+        background: rgba(187, 239, 253, 0.3)
+    }
+}
+
+.secondTab {
+    & .Tab {
+        display: flex;
+    }
+
+    & .Tab__head {
+        flex: 0 1 25%;
+       
+    }
+        
+    & .Tab__body {
+        flex: 0 1 75%;
+    }
+
+    & .Tab__list {
+        padding: 70px 50px 50px;
+        position: relative;
+        &::after {
+            content: '';
+            position: absolute;
+            height: 100%;
+            width: 4px;
+            right: 0;
+            top: 20px;
+            background: #61dafb;
+        }
+    }
+       
+    
+
+    & .Tab__title {
+        font-size: 1.3em;
+        padding: 15px 10px;
+        cursor: pointer;
+
+        &.active {
+            font-weight: bold;
+        }
+    }
+
+    & .Tab__body {
+        text-align: center;
+        margin: 20px 75px;
+    }
+    
+    & .Tabs__img {
+        width: 125px;
+    }
+
+    & .Tabs__title {
+        font-size: 1.3em;
+        font-weight: bold;
+        margin: 20px 0;
+    }
+
+    & .Tabs__text {
+        font-size: 1.2em;
+        line-height: 1.5;
+    }
+}

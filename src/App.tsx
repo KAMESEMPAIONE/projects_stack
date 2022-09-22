@@ -7,7 +7,7 @@ import {Home} from "./pages/Home/Home";
 import {Projects} from "./pages/Projects/Projects";
 import {NotFoundPage} from "./pages/NotFoundPage/NotFoundPage";
 import {SpoilerPage} from "./pages/SpoilerPage/SpoilerPage";
-import {Tabs} from "./component/Tabs/Tabs";
+import {Tabs} from "./pages/TabsPage/Tabs";
 import { Random } from './pages/Random/Random';
 import { Timer } from './component/Timer/Timer';
 import { ScrollButton } from './component/ScrollButton/ScrollButton';
