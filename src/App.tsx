@@ -9,8 +9,9 @@ import {NotFoundPage} from "./pages/NotFoundPage/NotFoundPage";
 import {SpoilerPage} from "./pages/SpoilerPage/SpoilerPage";
 import {Tabs} from "./pages/TabsPage/Tabs";
 import { Random } from './pages/Random/Random';
-import { Timer } from './component/Timer/Timer';
+import { Time } from './pages/Time/Time';
 import { ScrollButton } from './component/ScrollButton/ScrollButton';
+import { DropDownPage } from './pages/DropDownPage/DropDownPage';
 
 function App() {
   return (
@@ -26,8 +27,9 @@ function App() {
                                     <Route path={'spoiler'} element={<SpoilerPage/>}/>
                                     <Route path={'tabs'} element={<Tabs/>}/>
                                     <Route path={'random-generator'} element={<Random/>}/>
-                                    <Route path={'timer'} element={<Timer/>}/>
+                                    <Route path={'time'} element={<Time/>}/>
                                     <Route path={'scroll-button'} element={<ScrollButton/>}/>
+                                    <Route path={'dropdown-menu'} element={<DropDownPage/>}/>
                             </Route>
                             <Route path={'*'} element={<NotFoundPage/>}/>
                     </Routes>

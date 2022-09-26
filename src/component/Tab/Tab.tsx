@@ -1,5 +1,5 @@
 import React, {  FC, useState } from "react";
-import './Tab.scss';
+
 
 interface TabProps {
     titles: string[],
