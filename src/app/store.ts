@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-
+import dropDownReducer from './Reducer/DropDownSlice';
+import AuthFormReducer from './Reducer/AuthFormSlice'
 
 export const store = configureStore({
   reducer: {
-
+    DropDownPage: dropDownReducer,
+    AuthForm : AuthFormReducer
   },
 });
 

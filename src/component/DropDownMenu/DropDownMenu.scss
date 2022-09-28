@@ -1,0 +1,21 @@
+$headHeight : 1px;
+
+.DropDownMenu {
+    position: relative;
+
+    &__head {
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    &__body {
+        display: none;
+    }
+
+    &__body.active {
+        display: block;
+        position: absolute;
+        z-index: 42;
+        top: 175%;
+    }
+}

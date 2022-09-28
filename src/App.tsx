@@ -1,4 +1,5 @@
 import React from 'react';
+import { useAppSelector } from './app/hooks';
 import {BrowserRouter, Routes, Route, Navigate} from "react-router-dom";
 
 
@@ -12,8 +13,14 @@ import { Random } from './pages/Random/Random';
 import { Time } from './pages/Time/Time';
 import { ScrollButton } from './component/ScrollButton/ScrollButton';
 import { DropDownPage } from './pages/DropDownPage/DropDownPage';
+import { FormPage } from './pages/Form/FormPage';
+import { AccessDenied } from './pages/AccessDenied/AccessDenied';
+import { PrivatePage } from './pages/PrivatePage/PrivatePage';
+
 
 function App() {
+  const isRegistered = useAppSelector(state => state.AuthForm.isRegistered);
+
   return (
       <>
         <BrowserRouter>
@@ -22,6 +29,9 @@ function App() {
                 <main className={'App__body'}>
                     <Routes>
                             <Route path={'/'} element={<Home/>}/>
+                            {!isRegistered &&
+                               <Route path='/private-page' element={<Navigate to={'/access-denied'}/>}/>
+                            }
                             <Route path={'/projects'} element={<Navigate to={'/projects/spoiler'}/>}/>
                             <Route path={'/projects'} element={<Projects/>}>
                                     <Route path={'spoiler'} element={<SpoilerPage/>}/>
@@ -30,7 +40,10 @@ function App() {
                                     <Route path={'time'} element={<Time/>}/>
                                     <Route path={'scroll-button'} element={<ScrollButton/>}/>
                                     <Route path={'dropdown-menu'} element={<DropDownPage/>}/>
+                                    <Route path={'form'} element={<FormPage/>}/>
                             </Route>
+                            <Route path={'/private-page'} element={<PrivatePage/>}/>
+                            <Route path={'/access-denied'} element={<AccessDenied/>}/>
                             <Route path={'*'} element={<NotFoundPage/>}/>
                     </Routes>
                 </main>

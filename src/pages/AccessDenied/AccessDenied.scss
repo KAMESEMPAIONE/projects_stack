@@ -1,0 +1,30 @@
+.AccessDenied {
+    padding-top: 150px;
+
+    &__title {
+        font-size: 4.3em;
+        color: rgb(40, 44, 52);
+        line-height: 65px;
+        font-weight: 700;
+    }
+    
+    &__message {
+        font-size: 1.8em;
+        color: #6B6B6B;
+        margin: 30px 0;
+    }
+
+    &__link {
+        display: inline-block;
+        font-size: 1.7rem;
+        background-color: rgba(187,239,253,0.3);
+        border-bottom: 2px solid rgba(0,0,0,0.2);
+        color: #1a1a1a;
+        transition: 400ms;
+
+        &:hover {
+            background-color: #bbeffd;
+            border-bottom-color: #1a1a1a;
+          }
+    }
+}
