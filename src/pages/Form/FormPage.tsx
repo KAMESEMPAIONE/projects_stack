@@ -214,7 +214,7 @@ export const FormPage: FC = () => {
                         {isTerms === 'no' &&
                             <div className='FormPage__error'>
                                 <div className='FormPage__error-body'>
-                                    Required
+                                    Required!
                                 </div>
                             </div>
                         }

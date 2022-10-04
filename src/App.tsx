@@ -16,6 +16,10 @@ import { DropDownPage } from './pages/DropDownPage/DropDownPage';
 import { FormPage } from './pages/Form/FormPage';
 import { AccessDenied } from './pages/AccessDenied/AccessDenied';
 import { PrivatePage } from './pages/PrivatePage/PrivatePage';
+import { ModalPage } from './pages/ModalPage/ModalPage';
+import { BurgerMenuPage } from './pages/BurgerMenuPage/BurgerMenuPage';
+import { RTKQuery } from './pages/RTKQuery/RTKQuery';
+import { SlideShowPage } from './pages/SlideShowPage/SlideShowPage';
 
 
 function App() {
@@ -29,10 +33,8 @@ function App() {
                 <main className={'App__body'}>
                     <Routes>
                             <Route path={'/'} element={<Home/>}/>
-                            {!isRegistered &&
-                               <Route path='/private-page' element={<Navigate to={'/access-denied'}/>}/>
-                            }
                             <Route path={'/projects'} element={<Navigate to={'/projects/spoiler'}/>}/>
+                            
                             <Route path={'/projects'} element={<Projects/>}>
                                     <Route path={'spoiler'} element={<SpoilerPage/>}/>
                                     <Route path={'tabs'} element={<Tabs/>}/>
@@ -41,7 +43,16 @@ function App() {
                                     <Route path={'scroll-button'} element={<ScrollButton/>}/>
                                     <Route path={'dropdown-menu'} element={<DropDownPage/>}/>
                                     <Route path={'form'} element={<FormPage/>}/>
+                                    <Route path={'modal-window'} element={<ModalPage/>}/>
+                                    <Route path={'burger-menu'} element={<BurgerMenuPage/>}/>
+                                    <Route path={'rtk-query'} element={<RTKQuery/>}/>
+                                    <Route path={'slide-show'} element={<SlideShowPage/>}/>
                             </Route>
+
+                            {!isRegistered &&
+                               <Route path='/private-page' element={<Navigate to={'/access-denied'}/>}/>
+                            }
+
                             <Route path={'/private-page'} element={<PrivatePage/>}/>
                             <Route path={'/access-denied'} element={<AccessDenied/>}/>
                             <Route path={'*'} element={<NotFoundPage/>}/>

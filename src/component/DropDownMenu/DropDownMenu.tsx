@@ -14,10 +14,15 @@ export const DropDownMenu: FC<DropDownMenuProps> = (props) => {
    
     const active = useAppSelector(state => state.DropDownPage.activeMenu);
 
-    const handleClick = (event: React.MouseEvent<HTMLDivElement>): void => {
+    const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
         const target = event.target as HTMLDivElement;
         const value = Number(target.getAttribute('id'));
-        dispatch(activateMenu(value));
+
+        if (value === active) {
+           return dispatch(activateMenu(0));
+        }
+        
+        return dispatch(activateMenu(value));
     }
 
     document.addEventListener('click', (event) => {

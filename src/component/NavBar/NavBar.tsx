@@ -8,7 +8,7 @@ export const NavBar: FC = () => {
     const [searchParams, setSearchParams] = useSearchParams();
     const searchQuery: string = searchParams.get('searchValue') || ('');
 
-    const linkArr: string[] = ['Spoiler','Tabs','Random Generator','Time', 'Scroll Button', 'Dropdown Menu', 'Form'];
+    const linkArr: string[] = ['Spoiler','Tabs','Random Generator','Time', 'Scroll Button', 'Dropdown Menu', 'Form', 'Modal Window', 'Burger Menu', 'RTK Query', 'Slide Show', 'Calculator', 'ToDo', 'Encoder'];
 
     const filteredArr: string[] = linkArr.filter((link: string) => {
         return  link.toLowerCase().includes(searchQuery)
