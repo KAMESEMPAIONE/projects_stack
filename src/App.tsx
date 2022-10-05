@@ -1,14 +1,14 @@
 import React from 'react';
 import { useAppSelector } from './app/hooks';
-import {BrowserRouter, Routes, Route, Navigate} from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 
-import {Header} from "./component/Header/Header";
-import {Home} from "./pages/Home/Home";
-import {Projects} from "./pages/Projects/Projects";
-import {NotFoundPage} from "./pages/NotFoundPage/NotFoundPage";
-import {SpoilerPage} from "./pages/SpoilerPage/SpoilerPage";
-import {Tabs} from "./pages/TabsPage/Tabs";
+import { Header } from "./component/Header/Header";
+import { Home } from "./pages/Home/Home";
+import { Projects } from "./pages/Projects/Projects";
+import { NotFoundPage } from "./pages/NotFoundPage/NotFoundPage";
+import { SpoilerPage } from "./pages/SpoilerPage/SpoilerPage";
+import { Tabs } from "./pages/TabsPage/Tabs";
 import { Random } from './pages/Random/Random';
 import { Time } from './pages/Time/Time';
 import { ScrollButton } from './component/ScrollButton/ScrollButton';

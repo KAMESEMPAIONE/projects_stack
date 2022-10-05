@@ -1,10 +1,10 @@
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 import { useGetPostsQuery } from "../../app/Reducer/PostApi";
 import './RTKQuery.scss';
 
 export const RTKQuery: FC = () => {
     const {data = [], isLoading, isSuccess} = useGetPostsQuery(30);
-
+    
     return (
         <section className="RTKQuery">
             <h2 className="Projects__title">RTK Query</h2>
