@@ -1,0 +1,115 @@
+.Slider {
+    margin: 0 auto;
+    max-width: 600px;
+
+  &__body {
+    overflow: hidden;
+    position: relative;
+    height: 380px;
+
+    &:hover {
+      .Slider__btn {
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+  }
+
+  &__img {
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    transition: 400ms;
+
+    & img {
+      width: 600px;
+      height: 380px;
+    }
+    
+    &.active {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+
+  &__btn {
+    position: absolute;
+    z-index: 5;
+    top: 45%;
+    background: rgba(164, 157, 157, 0.8);
+    padding: 20px;
+    border-radius: 50%;
+    visibility: hidden;
+    opacity: 0;
+    transition: 400ms;
+  }
+
+  &__btn::before, &__btn::after {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 18px;
+    height: 4px;
+    background: #fff;
+  }
+
+  &__dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+  }
+
+  &__dot {
+    cursor: pointer;
+    padding: 9px;
+    border: 2px solid gray;
+    border-radius: 50%;
+    margin-right: 5px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &.active {
+      background: gray;
+    }
+  }
+}
+
+.prev {
+  left: 12px;
+  &::before {
+    top: 13px;
+    left: 10px;
+    transform: rotate(-45deg);
+  }
+  
+  &::after {
+    top: 23px;
+    left: 10px;
+    transform: rotate(45deg);
+  }
+
+}
+
+.next {
+  right: 12px;
+
+  &::before {
+    top: 13px;
+    right: 10px;
+    transform: rotate(45deg);
+  }
+
+  &::after {
+    top: 23px;
+    right: 10px;
+    transform: rotate(-45deg);
+  }
+}
+
+
+
+
+

@@ -4,6 +4,7 @@ import {NavLink, useMatch} from "react-router-dom";
 import './Header.scss';
 
 export const Header: FC = () => {
+    const match = useMatch('/');
     return (
         <header className={'header'}>
             <div className="container">

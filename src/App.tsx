@@ -19,7 +19,7 @@ import { PrivatePage } from './pages/PrivatePage/PrivatePage';
 import { ModalPage } from './pages/ModalPage/ModalPage';
 import { BurgerMenuPage } from './pages/BurgerMenuPage/BurgerMenuPage';
 import { RTKQuery } from './pages/RTKQuery/RTKQuery';
-import { SlideShowPage } from './pages/SlideShowPage/SlideShowPage';
+import {SliderPage} from "./pages/SliderPage/SliderPage";
 
 
 function App() {
@@ -46,7 +46,7 @@ function App() {
                                     <Route path={'modal-window'} element={<ModalPage/>}/>
                                     <Route path={'burger-menu'} element={<BurgerMenuPage/>}/>
                                     <Route path={'rtk-query'} element={<RTKQuery/>}/>
-                                    <Route path={'slide-show'} element={<SlideShowPage/>}/>
+                                    <Route path={'slider'} element={<SliderPage/>}/>
                             </Route>
 
                             {!isRegistered &&
