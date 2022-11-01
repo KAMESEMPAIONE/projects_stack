@@ -1,0 +1,83 @@
+.Encoder {
+  &__desc {
+    font-size: 1.3rem;
+    margin: 12px 8px;
+  }
+  &__content {
+    width: 1300px;
+    margin: 40px auto 0;
+    padding: 40px 40px;
+    background: url("./img/footback.png") 0 0 /cover no-repeat;
+  }
+
+  &__params {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+
+    input, select, button {
+      font-size: 1.2rem;
+      padding: 7px;
+      margin-right: 35px;
+    }
+  }
+
+  &__cipher-type option{
+    font-size: 1.2rem;
+  }
+
+  &__cipher-key {
+    border: 3px solid transparent;
+  }
+
+  &__button {
+    font-size: 1.2rem;
+    border-radius: 10px;
+    padding: 7px 15px;
+    transition: 300ms;
+
+    &:hover {
+      background: #464646;
+      color: #e3e3e3;
+    }
+  }
+
+  &__areas {
+    display: flex;
+
+    & > * {
+      margin-right: 35px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  &__textarea {
+    resize: none;
+    padding: 15px;
+    font-size: 1.2rem;
+    min-height: 580px;
+    max-height: 580px;
+    width: 600px;
+    border: 3px solid transparent;
+  }
+
+  &__error {
+    border: 3px solid red;
+  }
+
+  &__error-container {
+    position: relative;
+  }
+
+  &__error-message {
+    position: absolute;
+    top: -20px;
+    left: 0;
+    color: red;
+  }
+
+}
+

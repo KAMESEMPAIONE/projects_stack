@@ -19,7 +19,9 @@ import { PrivatePage } from './pages/PrivatePage/PrivatePage';
 import { ModalPage } from './pages/ModalPage/ModalPage';
 import { BurgerMenuPage } from './pages/BurgerMenuPage/BurgerMenuPage';
 import { RTKQuery } from './pages/RTKQuery/RTKQuery';
-import {SliderPage} from "./pages/SliderPage/SliderPage";
+import { SliderPage } from "./pages/SliderPage/SliderPage";
+import { Calculator } from "./pages/Calculator/Calculator";
+import { Encoder } from "./pages/Encoder/Encoder";
 
 
 function App() {
@@ -47,6 +49,8 @@ function App() {
                                     <Route path={'burger-menu'} element={<BurgerMenuPage/>}/>
                                     <Route path={'rtk-query'} element={<RTKQuery/>}/>
                                     <Route path={'slider'} element={<SliderPage/>}/>
+                                    <Route path={'calculator'} element={<Calculator/>}/>
+                                    <Route path={'encoder'} element={<Encoder/>}/>
                             </Route>
 
                             {!isRegistered &&

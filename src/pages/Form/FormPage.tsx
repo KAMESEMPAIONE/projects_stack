@@ -1,4 +1,4 @@
-import React, {FC, useState} from 'react';
+import React, {FC, useState, useRef} from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { handleInputChange, handleButtonChange, setRegistered } from '../../app/Reducer/AuthFormSlice';
 import { Navigate } from 'react-router-dom';
@@ -10,6 +10,7 @@ export const FormPage: FC = () => {
     const dispatch = useAppDispatch();
 
     const [navigate, setNavigate] = useState<boolean>(false);
+    const [showPass, setShowPass] = useState<boolean>(false);
 
     const username = useAppSelector(state => state.AuthForm.username);
     const email = useAppSelector(state => state.AuthForm.email);
@@ -19,12 +20,11 @@ export const FormPage: FC = () => {
     const termsConsent = useAppSelector(state => state.AuthForm.termsConsent);
     const isRegistered = useAppSelector(state => state.AuthForm.isRegistered)
 
-    const [showPass, setShowPass] = useState<boolean>(false);
-    const [isNameValid, setIsNameValid] = useState<string>('');
-    const [isEmailValid, setIsEmailValid] = useState<string>('');
-    const [isPassValid, setIsPassValid] = useState<string>('');
-    const [isRepeatPassValid, setIsRepeatPassValid] = useState<string>('');
-    const [isTerms, setIsTerms] = useState<string>('');
+    const usernameElem = useRef(null);
+    const emailElem = useRef(null);
+    const passwordElem = useRef(null);
+    const repeatPassElem = useRef(null);
+    const termsConsentElem = useRef(null);
 
     const isEmail = (email: string): boolean => {
         const regExp: RegExp = /(^[a-zA-Z0-9._]+)@([a-zA-Z0-9])+.([a-z]+)(.[a-z]+)?$/;
@@ -32,74 +32,55 @@ export const FormPage: FC = () => {
         return regExp.test(email);
     }
 
-    const checkName = (): boolean => {
+    const checkValues = ():boolean => {
+        let error = false;
+
         if (username === '') {
-            setIsNameValid('empty')
-            return false;
+            usernameElem.current.previousElementSibling.textContent = 'Cannot be blank!';
+            error = true;
         } else {
-            setIsNameValid('ok')
-            return true;
+            usernameElem.current.previousElementSibling.textContent = '';
         }
-    }
 
-    const checkEmail = (): boolean => {
         if (email === '') {
-            setIsEmailValid('empty')
-            return false;
+            emailElem.current.previousElementSibling.textContent = 'Cannot be blank!';
+            error = true;
         } else if (!isEmail(email)) {
-            setIsEmailValid('invalid')
-            return false;
+            emailElem.current.previousElementSibling.textContent = 'Not valid!';
         } else {
-            setIsEmailValid('ok')
-            return true;
+            emailElem.current.previousElementSibling.textContent = '';
         }
-    }
 
-    const checkPassword = ():boolean => {
         if (password === '') {
-            setIsPassValid('empty')
-            return false;
+            passwordElem.current.previousElementSibling.textContent = 'Cannot be blank!';
+            error = true;
         } else if (password.length < 12) {
-            setIsPassValid('short')
-            return false;
+            passwordElem.current.previousElementSibling.textContent = `It's to short!`;
+            error = true;
         } else {
-            setIsPassValid('ok')
-            return true;
+            passwordElem.current.previousElementSibling.textContent = ``;
         }
-    }
 
-    const checkRepeatPassord = ():boolean => {
         if (repeatPass === '') {
-            setIsRepeatPassValid('empty')
-            return false;
+            repeatPassElem.current.previousElementSibling.textContent = 'Cannot be blank!';
+            error = true;
         } else if (repeatPass !== password) {
-            setIsRepeatPassValid('different')
-            return false;
+            repeatPassElem.current.previousElementSibling.textContent = 'Does not match!';
+            error = true;
         } else {
-            setIsRepeatPassValid('ok')
-            return true;
+            repeatPassElem.current.previousElementSibling.textContent = '';
         }
-    }
 
-    const checkTerms = (): boolean => {
         if (!termsConsent) {
-            setIsTerms('no');
-            return false;
+            termsConsentElem.current.previousElementSibling.textContent = 'Required!';
+            error = true;
         } else {
-            setIsTerms('ok')
-            return true;
+            termsConsentElem.current.previousElementSibling.textContent = '';
         }
+
+        return error;
     }
 
-    const checkInputsValue = () => {
-        const name = checkName();
-        const email = checkEmail();
-        const pass = checkPassword();
-        const repeatPass = checkRepeatPassord();
-        const terms = checkTerms();
-       
-        return (name && email && pass && repeatPass && terms);
-    }
 
     const hadleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         return dispatch(
@@ -122,15 +103,15 @@ export const FormPage: FC = () => {
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        if(!checkInputsValue()) {
-            return false;
+        const test = checkValues();
+
+        if(!test) {
+            dispatch(setRegistered(true));
+
+            localStorage.setItem('isRegistered', JSON.stringify(isRegistered));
+
+            setNavigate(isRegistered);
         }
-
-        dispatch(setRegistered(true));
-
-        localStorage.setItem('isRegistered', JSON.stringify(isRegistered));
-
-        setNavigate(isRegistered);
     }
 
     return (
@@ -145,80 +126,35 @@ export const FormPage: FC = () => {
             <div className='FormPage__body' >
                 <form action="#" method='POST' onSubmit={handleSubmit} noValidate autoCorrect='off' className='FormPage__form'>
 
-                    {isNameValid === 'empty' && 
-                        <div className='FormPage__error'>
-                            <div className='FormPage__error-body'>
-                                Cannot be blank!
-                            </div>
-                        </div>
-                    }
-                    <input value={username} onChange={hadleChange} type="text"  name="username" placeholder="username:" className='FormPage__input' maxLength={32}/>
+                    <span className={'FormPage__error'}>
+                        <span className={'FormPage__error-body'}></span>
+                        <input value={username} onChange={hadleChange} ref={usernameElem} type="text"  name="username" placeholder="username:" className='FormPage__input' maxLength={32}/>
+                    </span>
 
-                    {isEmailValid === 'empty' && 
-                        <div className='FormPage__error'>
-                            <div className='FormPage__error-body'>
-                                Cannot be blank!
-                            </div>
-                        </div>
-                    }
+                    <span className={'FormPage__error'}>
+                        <span className={'FormPage__error-body'}></span>
+                         <input value={email} onChange={hadleChange} ref={emailElem} type="email"  name="email"  placeholder="email:" className='FormPage__input' maxLength={32}/>
+                    </span>
 
-                    {isEmailValid === 'invalid' && 
-                        <div className='FormPage__error'>
-                            <div className='FormPage__error-body'>
-                                Not valid!
-                            </div>
-                        </div>
-                    }
-                    <input value={email} onChange={hadleChange} type="email"  name="email"  placeholder="email:" className='FormPage__input' maxLength={32}/>
+                    <span className={'FormPage__error'}>
+                        <span className={'FormPage__error-body'}></span>
+                        <input value={password} onChange={hadleChange} ref={passwordElem} type={`${showPass ? 'text' : 'password'}`}  name="password" placeholder="password" className='FormPage__input' autoComplete='on' maxLength={32}/>
+                    </span>
 
-                    {isPassValid === 'empty' && 
-                        <div className='FormPage__error'>
-                            <div className='FormPage__error-body'>
-                                Cannot be blank!
-                            </div>
-                        </div>
-                    }
-
-                    {isPassValid === 'short' && 
-                        <div className='FormPage__error'>
-                            <div className='FormPage__error-body'>
-                                Must be at least 12 characters!
-                            </div>
-                        </div>
-                    }
-                    <input value={password} onChange={hadleChange} type={`${showPass ? 'text' : 'password'}`}  name="password" placeholder="password" className='FormPage__input' autoComplete='on' maxLength={32}/>
-
-                    {isRepeatPassValid === 'empty' && 
-                        <div className='FormPage__error'>
-                            <div className='FormPage__error-body'>
-                                Cannot be blank!
-                            </div>
-                        </div>
-                    }
-
-                    {isRepeatPassValid === 'different' && 
-                        <div className='FormPage__error'>
-                            <div className='FormPage__error-body'>
-                                Does not match!
-                            </div>
-                        </div>
-                    }
-
-                    <input value={repeatPass} onChange={hadleChange} type={`${showPass ? 'text' : 'password'}`}  name="repeatPass" placeholder="repeat password:" className='FormPage__input' autoComplete='on' maxLength={32}/>
+                    <span className={'FormPage__error'}>
+                        <span className={'FormPage__error-body'}></span>
+                        <input value={repeatPass} onChange={hadleChange} ref={repeatPassElem} type={`${showPass ? 'text' : 'password'}`}  name="repeatPass" placeholder="repeat password:" className='FormPage__input' autoComplete='on' maxLength={32}/>
+                    </span>
 
                     <div className='FormPage__checkbox-body'>
                         <label className={`FormPage__label FormPage__check ${showPass ? 'active' : ''}`}><input checked={showPass} onChange={() => {setShowPass(!showPass)}} type="checkbox" name='showPassword' className={`FormPage__checkbox`}/>Show password</label>
                        
                         <label className={`FormPage__label FormPage__check ${notification ? 'active' : ''}`}><input checked={notification} onChange={handleClick} type="checkbox"  name='notification' className='FormPage__checkbox'/>Send me notification.</label>
 
-                        {isTerms === 'no' &&
-                            <div className='FormPage__error'>
-                                <div className='FormPage__error-body'>
-                                    Required!
-                                </div>
-                            </div>
-                        }
-                        <label className={`FormPage__label FormPage__check ${termsConsent ? 'active' : ''}`}><input checked={termsConsent} onChange={handleClick} type="checkbox"  name='termsConsent' className='FormPage__checkbox'/>I have agree to the terms!</label> 
+                        <span className={'FormPage__error'}>
+                            <span className={'FormPage__error-body'}></span>
+                            <label ref={termsConsentElem} className={`FormPage__label FormPage__check ${termsConsent ? 'active' : ''}`}><input checked={termsConsent} onChange={handleClick} type="checkbox"  name='termsConsent' className='FormPage__checkbox'/>I have agree to the terms!</label>
+                        </span>
                     </div>
                     
                     <button type='submit' className='FormPage__button'>Sign in!</button>

@@ -27,7 +27,6 @@ const initialState: AuthFormState = {
     repeatPass: '',
     notification: false,
     termsConsent: false,
-    // @ts-expect-error
     isRegistered: JSON.parse(localStorage.getItem('isRegistered')) || false
 }
 

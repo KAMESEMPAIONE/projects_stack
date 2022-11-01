@@ -34,10 +34,12 @@ select:-webkit-autofill:focus {
         background: #373940;
         border-radius: 7px;
         color: #ebebeb;
+        width: 100%;
     }
 
     &__error {
         position: relative;
+        display: block;
     }
 
     &__error-body {
@@ -63,9 +65,7 @@ select:-webkit-autofill:focus {
         &:nth-child(2) {
             margin-bottom: 30px;
         }
-        &:last-child {
-            margin-bottom: 35px;
-        }
+
     }
 
     &__checkbox {
@@ -74,7 +74,7 @@ select:-webkit-autofill:focus {
     }
     
     &__button {
-        margin: 0 auto;
+        margin: 25px auto 0;
         padding: 7px 15px;
         font-size: 1.3rem;
         border-radius: 5px;
